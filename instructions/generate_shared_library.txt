@@ -1,24 +1,28 @@
 1) Download Java JDK -> jdk-18_windows-x64_bin.exe
 
-2) Open Android Studio (AS)
+2) Windows10 -> Enviorment Variables -> New -> 
+    variable name:  JAVA_HOME
+    variable value:  C:\Program Files\Java\jdk-18.0.2
+    
+3) Open Android Studio (AS)
 
-3) Click 'Project' instead of 'Android', to show project directory in AS
+4) Click 'Project' instead of 'Android', to show project directory in AS
 
-4) Create Folder 'jni' inside root directory in AS project
+5) Create Folder 'jni' inside root directory in AS project
 
-5) Paste the [*.cpp | *.h] Files
+6) Paste the [*.cpp | *.h] Files
 
-6) Download NDK and CMake
+7) Download NDK and CMake
    SDK Manager -> SDK Tooles -> NDK(Side by side)
    SDK Manager -> SDK Tooles -> CMake
 
-7) Open local.properties file, and change to
+8) Open local.properties file, and change to
    sdk.dir=C\:\\Users\\Slaviboy\\AppData\\Local\\Android\\Sdk
    ndk.dir=C\:\\Users\\Slaviboy\\AppData\\Local\\Android\\Sdk
 
-8) Run 'ndk-buil' AS command in terminal
+9) Run 'ndk-buil' AS command in terminal
    - Should generate directory 'libs' and 'obj' (*.so files for Shared Library)
 
-9) Create folder root->app->src->main->jniLibs
+10) Create folder root->app->src->main->jniLibs
 
-10) Copy content from 'libs' directory inside 'jniLibs'
+11) Copy content from 'libs' directory inside 'jniLibs'
