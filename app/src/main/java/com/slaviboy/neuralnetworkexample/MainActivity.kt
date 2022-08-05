@@ -23,29 +23,6 @@ import com.slaviboy.neuralnetwork.NeuralNetwork
 
 class MainActivity : ComponentActivity() {
 
-
-    fun Canvas.drawCircleOnBitmap(x: Float, y: Float, paint: Paint) {
-        drawCircle(
-            x,
-            y,
-            20f,
-            paint.apply {
-                style = Paint.Style.FILL
-                shader = RadialGradient(
-                    x,
-                    y,
-                    30f,
-                    intArrayOf(
-                        Color.BLACK,
-                        Color.argb(5, 0, 0, 0)
-                    ),
-                    floatArrayOf(0f, 1f),
-                    Shader.TileMode.CLAMP
-                )
-            }
-        )
-    }
-
     @OptIn(ExperimentalComposeUiApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
