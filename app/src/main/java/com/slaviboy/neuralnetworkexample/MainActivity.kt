@@ -1,9 +1,6 @@
 package com.slaviboy.neuralnetworkexample
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
+import android.graphics.*
 import android.os.Bundle
 import android.view.MotionEvent
 import androidx.activity.ComponentActivity
@@ -26,37 +23,27 @@ import com.slaviboy.neuralnetwork.NeuralNetwork
 
 class MainActivity : ComponentActivity() {
 
-    private val path = Path()
-    val paint = Paint().apply {
-        isAntiAlias = true
-    }
 
-    fun Canvas.drawCircleOnBitmap(x: Float, y: Float) {
+    fun Canvas.drawCircleOnBitmap(x: Float, y: Float, paint: Paint) {
         drawCircle(
             x,
             y,
             20f,
-            paint
+            paint.apply {
+                style = Paint.Style.FILL
+                shader = RadialGradient(
+                    x,
+                    y,
+                    30f,
+                    intArrayOf(
+                        Color.BLACK,
+                        Color.argb(5, 0, 0, 0)
+                    ),
+                    floatArrayOf(0f, 1f),
+                    Shader.TileMode.CLAMP
+                )
+            }
         )
-        /* drawCircle(
-             x,
-             y,
-             20f,
-             paint.apply {
-                 style = Paint.Style.FILL
-                 shader = RadialGradient(
-                     x,
-                     y,
-                     30f,
-                     intArrayOf(
-                         Color.BLACK,
-                         Color.argb(5, 0, 0, 0)
-                     ),
-                     floatArrayOf(0f, 1f),
-                     Shader.TileMode.CLAMP
-                 )
-             }
-         )*/
     }
 
     @OptIn(ExperimentalComposeUiApi::class)
@@ -65,11 +52,31 @@ class MainActivity : ComponentActivity() {
 
         val neuralNetwork = NeuralNetwork(4.0, 4, 6, 3)
         val learningRate = neuralNetwork.getLearningRate()
- 
+
         setContent {
 
             var workingBitmap by remember { mutableStateOf(Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)) }
-            var canvas by remember { mutableStateOf(Canvas(workingBitmap)) }
+            var canvas by remember {
+                mutableStateOf(
+                    Canvas(workingBitmap)
+                )
+            }
+            val path by remember {
+                mutableStateOf(
+                    Path()
+                )
+            }
+            val paint by remember {
+                mutableStateOf(
+                    Paint().apply {
+                        isAntiAlias = true
+                        style = Paint.Style.STROKE
+                        strokeWidth = 20f
+                        strokeCap = Paint.Cap.ROUND
+                        strokeJoin = Paint.Join.ROUND
+                    }
+                )
+            }
 
             val infiniteTransition = rememberInfiniteTransition()
             val trigger by infiniteTransition.animateFloat(
@@ -97,51 +104,28 @@ class MainActivity : ComponentActivity() {
                     .pointerInteropFilter {
                         when (it.action) {
                             MotionEvent.ACTION_DOWN -> {
-                                canvas.drawCircleOnBitmap(it.x, it.y)
+                                path.apply {
+                                    reset()
+                                    moveTo(it.x, it.y)
+                                }
                             }
                             MotionEvent.ACTION_MOVE -> {
-                                canvas.drawCircleOnBitmap(it.x, it.y)
+                                path.lineTo(it.x, it.y)
+                                canvas.drawPath(path, paint)
+                                path.rewind()
+                                path.moveTo(it.x, it.y)
                             }
                             MotionEvent.ACTION_UP -> {
-                                canvas.drawCircleOnBitmap(it.x, it.y)
+                                path.lineTo(it.x, it.y)
+                                canvas.drawPath(path, paint)
+                                path.rewind()
+                                path.moveTo(it.x, it.y)
                             }
-                            else -> false
+                            else -> return@pointerInteropFilter false
                         }
                         true
                     }
             )
-
-            /*Canvas(
-                modifier = Modifier
-                    .blur(radius = 16.dp)
-                    .fillMaxSize()
-                    .background(color = Color.Gray)
-                    .pointerInteropFilter {
-                        when (it.action) {
-                            MotionEvent.ACTION_DOWN -> {
-                                path.moveTo(it.x, it.y)
-                            }
-                            MotionEvent.ACTION_MOVE -> {
-                                path.lineTo(it.x, it.y)
-                            }
-                            MotionEvent.ACTION_UP -> {
-                                path.lineTo(it.x, it.y)
-                            }
-                            else -> false
-                        }
-                        true
-                    }
-            ) {
-                if (trigger.isFinite()) {
-                    drawPath(
-                        path = path,
-                        color = Color.Green,
-                        alpha = 1f,
-                        style = Stroke(width = 40f)
-                    )
-                }
-            }*/
-
         }
     }
 }
