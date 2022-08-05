@@ -1,6 +1,9 @@
 package com.slaviboy.neuralnetworkexample
 
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Path
 import android.os.Bundle
 import android.view.MotionEvent
 import androidx.activity.ComponentActivity
@@ -32,7 +35,16 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
-            var workingBitmap by remember { mutableStateOf(Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)) }
+            val strokeWidth2 by remember {
+                mutableStateOf(
+                    40f
+                )
+            }
+            var workingBitmap by remember {
+                mutableStateOf(
+                    Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
+                )
+            }
             var canvas by remember {
                 mutableStateOf(
                     Canvas(workingBitmap)
@@ -48,7 +60,7 @@ class MainActivity : ComponentActivity() {
                     Paint().apply {
                         isAntiAlias = true
                         style = Paint.Style.STROKE
-                        strokeWidth = 20f
+                        strokeWidth = strokeWidth2
                         strokeCap = Paint.Cap.ROUND
                         strokeJoin = Paint.Join.ROUND
                     }
