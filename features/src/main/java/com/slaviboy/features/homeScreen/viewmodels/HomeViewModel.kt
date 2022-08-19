@@ -10,17 +10,21 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.ViewModel
 import com.slaviboy.composeunits.DpToPx
 import com.slaviboy.composeunits.dw
+import com.slaviboy.features.homeScreen.composables.pages.OutputResultItem
 import com.slaviboy.features.homeScreen.sealed.*
 import com.slaviboy.features.homeScreen.ui.canvasStrokeColor
 import com.slaviboy.features.homeScreen.ui.sectionBackgroundColor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-
 @HiltViewModel
 class HomeViewModel @Inject constructor() : ViewModel() {
 
     companion object {
+
+        fun randomFloat(min: Float = 0f, max: Float = 100f): Float {
+            return (min + Math.random() * (max - min)).toFloat()
+        }
 
         fun Bitmap.getRoundedCornerBitmap(roundPixelSize: Int): Bitmap {
             val output = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -90,6 +94,17 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     )
         private set
 
+    var outputResults: List<OutputResultItem> by mutableStateOf(List(10) {
+        OutputResultItem(it, randomFloat())
+    })
+        private set
+
+    var outputResult: OutputResultItem by mutableStateOf(outputResults.first())
+        private set
+
+    var userScrollEnabled: Boolean by mutableStateOf(true)
+        private set
+
     fun setBitmap(width: Int, height: Int) {
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         canvas = Canvas(bitmap).also {
@@ -103,9 +118,15 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         val x = event.x
         val y = event.y
         when (event.action) {
-            MotionEvent.ACTION_DOWN -> moveTo(x, y)
+            MotionEvent.ACTION_DOWN -> {
+                userScrollEnabled = false
+                moveTo(x, y)
+            }
+            MotionEvent.ACTION_UP -> {
+                userScrollEnabled = true
+                lineTo(x, y)
+            }
             MotionEvent.ACTION_MOVE -> lineTo(x, y)
-            MotionEvent.ACTION_UP -> lineTo(x, y)
             else -> return false
         }
         return true

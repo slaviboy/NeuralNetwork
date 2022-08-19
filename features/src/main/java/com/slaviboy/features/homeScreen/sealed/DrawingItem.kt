@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import com.slaviboy.features.R
-import com.slaviboy.features.homeScreen.ui.alertStatusColor
+import com.slaviboy.features.homeScreen.ui.alertButtonColor
 import com.slaviboy.features.homeScreen.ui.iconNormalColor
 import com.slaviboy.features.homeScreen.ui.iconSelectedColor
 
@@ -44,7 +44,7 @@ sealed class DrawingItem(
         return if (isSelectable && isSelected) {
             iconSelectedColor
         } else if (isCheckable && isChecked) {
-            alertStatusColor
+            alertButtonColor
         } else {
             iconNormalColor
         }

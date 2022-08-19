@@ -1,4 +1,4 @@
-package com.slaviboy.features.homeScreen.composables
+package com.slaviboy.features.homeScreen.composables.pages
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -10,12 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.slaviboy.composeunits.dw
 import com.slaviboy.features.R
+import com.slaviboy.features.homeScreen.composables.Button
+import com.slaviboy.features.homeScreen.composables.InputSection
+import com.slaviboy.features.homeScreen.composables.OutputSection
+import com.slaviboy.features.homeScreen.composables.TitleSection
 import com.slaviboy.features.homeScreen.ui.normalButtonColor
 import com.slaviboy.features.homeScreen.ui.screenBackgroundColor
 import com.slaviboy.features.homeScreen.viewmodels.HomeViewModel
 
 @Composable
-fun HomeComposable(viewModel: HomeViewModel) {
+fun HomePage(viewModel: HomeViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
