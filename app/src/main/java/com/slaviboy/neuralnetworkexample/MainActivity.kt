@@ -4,8 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.navigation.dependency
 import com.slaviboy.composeunits.initSize
-import com.slaviboy.features.homeScreen.composables.pages.HomePage
+import com.slaviboy.features.homeScreen.composables.pages.NavGraphs
+import com.slaviboy.features.homeScreen.composables.pages.destinations.HomePageDestination
 import com.slaviboy.features.homeScreen.viewmodels.HomeViewModel
 import com.slaviboy.neuralnetwork.NeuralNetwork
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +24,12 @@ class MainActivity : ComponentActivity() {
 
         initSize()
         setContent {
-            val homeViewModel: HomeViewModel = hiltViewModel()
-            HomePage(homeViewModel)
+            DestinationsNavHost(
+                navGraph = NavGraphs.root,
+                dependenciesContainerBuilder = {
+                    dependency(HomePageDestination) { hiltViewModel<HomeViewModel>() }
+                }
+            )
         }
     }
 }

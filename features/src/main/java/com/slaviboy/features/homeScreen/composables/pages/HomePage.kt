@@ -8,18 +8,27 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.slaviboy.composeunits.dw
 import com.slaviboy.features.R
 import com.slaviboy.features.homeScreen.composables.Button
 import com.slaviboy.features.homeScreen.composables.InputSection
 import com.slaviboy.features.homeScreen.composables.OutputSection
 import com.slaviboy.features.homeScreen.composables.TitleSection
+import com.slaviboy.features.homeScreen.composables.pages.destinations.TrainPageDestination
 import com.slaviboy.features.homeScreen.ui.normalButtonColor
 import com.slaviboy.features.homeScreen.ui.screenBackgroundColor
 import com.slaviboy.features.homeScreen.viewmodels.HomeViewModel
 
+@RootNavGraph(start = true)
+@Destination
 @Composable
-fun HomePage(viewModel: HomeViewModel) {
+fun HomePage(
+    viewModel: HomeViewModel,
+    navigator: DestinationsNavigator
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -35,7 +44,9 @@ fun HomePage(viewModel: HomeViewModel) {
             TitleSection(R.string.home, R.drawable.ic_github)
             InputSection(viewModel)
             OutputSection(viewModel)
-            Button(normalButtonColor, R.string.train)
+            Button(normalButtonColor, R.string.train) {
+                navigator.navigate(TrainPageDestination())
+            }
         }
     }
 }
