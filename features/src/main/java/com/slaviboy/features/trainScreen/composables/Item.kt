@@ -59,7 +59,7 @@ fun Item(
                 contentDescription = null,
                 contentScale = ContentScale.FillWidth,
                 modifier = Modifier
-                    .width(0.13.dw)
+                    .width(0.12.dw)
                     .wrapContentHeight()
             )
             Spacer(modifier = Modifier.width(0.04.dw))
@@ -98,7 +98,7 @@ fun Item(
                     contentDescription = null,
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier
-                        .width(0.07.dw)
+                        .width(0.055.dw)
                         .wrapContentHeight(),
                     colorFilter = if (item.showChevronIcon) {
                         ColorFilter.tint(chevronColor)

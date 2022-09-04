@@ -18,9 +18,9 @@ fun MediumTitle(
     @StringRes titleResId: Int
 ) {
     Text(
-        stringResource(id = titleResId).capitalizeWords(),
+        stringResource(id = titleResId).uppercase(),
         fontFamily = NotoSansFont,
-        fontSize = 0.045.sw,
+        fontSize = 0.03.sw,
         fontWeight = FontWeight.Normal,
         color = subtitleTextColor,
         modifier = Modifier
