@@ -1,10 +1,7 @@
-package com.slaviboy.features.homeScreen.composables.pages
+package com.slaviboy.features.homeScreen.composables
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,16 +10,12 @@ import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.slaviboy.composeunits.dw
 import com.slaviboy.features.R
-import com.slaviboy.features.homeScreen.composables.Button
-import com.slaviboy.features.homeScreen.composables.InputSection
-import com.slaviboy.features.homeScreen.composables.OutputSection
-import com.slaviboy.features.homeScreen.composables.TitleSection
-import com.slaviboy.features.homeScreen.composables.pages.destinations.TrainPageDestination
+import com.slaviboy.features.destinations.TrainPageDestination
 import com.slaviboy.features.homeScreen.ui.normalButtonColor
 import com.slaviboy.features.homeScreen.ui.screenBackgroundColor
 import com.slaviboy.features.homeScreen.viewmodels.HomeViewModel
 
-@RootNavGraph(start = true)
+@RootNavGraph(start = false)
 @Destination
 @Composable
 fun HomePage(
@@ -41,6 +34,7 @@ fun HomePage(
         userScrollEnabled = viewModel.userScrollEnabled
     ) {
         item {
+            Spacer(modifier = Modifier.height(0.05.dw))
             TitleSection(R.string.home, R.drawable.ic_github)
             InputSection(viewModel)
             OutputSection(viewModel)

@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import com.slaviboy.composeunits.dw
 import com.slaviboy.composeunits.sw
-import com.slaviboy.features.homeScreen.composables.pages.OutputResultItem
 import com.slaviboy.features.homeScreen.ui.NotoSansFont
 import com.slaviboy.features.homeScreen.ui.outputResultBarColor
 import com.slaviboy.features.homeScreen.ui.outputResultTextColor

@@ -5,4 +5,26 @@
     <string name="output">Output</string>
     <string name="confidence">Confidence</string>
     <string name="train">Train</string>
+    <string name="train_network">Train network</string>
+    <string name="training">Training</string>
+    <string name="testing">Testing</string>
+    <string name="train_details">To train the neural network you need to load the training and testing data. You can download the EMNIST dataset.</string>
+    <string name="train_title">Training data</string>
+    <string name="train_details_link">EMNIST</string>
+    <string name="load_training_data">Load training data</string>
+    <string name="training_data_title">Training data</string>
+    <string name="training_data_subtitle">Load training image data</string>
+    <string name="training_labels_title">Training labels</string>
+    <string name="training_labels_subtitle">Load training labels</string>
+    <string name="load_testing_data">Load testing data</string>
+    <string name="testing_data_title">Testing data</string>
+    <string name="testing_data_subtitle">Load testing image data</string>
+    <string name="testing_labels_title">Testing labels</string>
+    <string name="testing_labels_subtitle">Load testing labels</string>
+    <string name="training_states">Training states</string>
+    <string name="train_subtitle">Load training data and train your neural network using the EMNIST dataset.</string>
+    <string name="finished">Finished</string>
+    <string name="output_label">Output label</string>
+    <string name="input_data">Input data</string>
+    <string name="start_training">Start training</string>
 </resources>

@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.ViewModel
 import com.slaviboy.composeunits.DpToPx
 import com.slaviboy.composeunits.dw
-import com.slaviboy.features.homeScreen.composables.pages.OutputResultItem
+import com.slaviboy.features.homeScreen.composables.OutputResultItem
 import com.slaviboy.features.homeScreen.sealed.*
 import com.slaviboy.features.homeScreen.ui.canvasStrokeColor
 import com.slaviboy.features.homeScreen.ui.sectionBackgroundColor

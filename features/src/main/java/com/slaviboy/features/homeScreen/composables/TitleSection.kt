@@ -16,27 +16,26 @@ import androidx.compose.ui.text.font.FontWeight
 import com.slaviboy.composeunits.dw
 import com.slaviboy.composeunits.sw
 import com.slaviboy.features.homeScreen.ui.NotoSansFont
-import com.slaviboy.features.homeScreen.ui.headerTextColor
+import com.slaviboy.features.homeScreen.ui.titleTextColor
 
 @Composable
 fun TitleSection(
     @StringRes titleResId: Int,
     @DrawableRes iconResId: Int? = null
 ) {
-    Spacer(modifier = Modifier.height(0.05.dw))
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight()
+            .height(0.2.dw)
     ) {
         Text(
             stringResource(id = titleResId),
             fontFamily = NotoSansFont,
             fontSize = 0.1.sw,
             fontWeight = FontWeight.Medium,
-            color = headerTextColor
+            color = titleTextColor
         )
         if (iconResId != null) {
             Image(
@@ -47,7 +46,7 @@ fun TitleSection(
                     .width(0.13.dw)
                     .padding(0.02.dw)
                     .offset(x = -(0.02.dw)),
-                colorFilter = ColorFilter.tint(headerTextColor)
+                colorFilter = ColorFilter.tint(titleTextColor)
             )
         }
     }
